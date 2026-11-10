@@ -1,0 +1,35 @@
+name: Wake Render backends
+
+on:
+  schedule:
+    # GitHub cron is UTC. India is UTC+5:30, so these run at about
+    # 09:50, 14:50, 18:50 and 20:50 IST (GitHub may start them a few minutes late).
+    - cron: "20 4 * * *"
+    - cron: "20 9 * * *"
+    - cron: "20 13 * * *"
+    - cron: "20 15 * * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Wake just one service ("codeatlas", "contractiq", "strategy") or "all"; empty = whatever is in its window now'
+        required: false
+        default: ""
+
+concurrency:
+  group: wake
+  cancel-in-progress: false
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: node wake.mjs
+        env:
+          ONLY: ${{ github.event.inputs.only }}
