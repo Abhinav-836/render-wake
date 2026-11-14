@@ -15,6 +15,9 @@ const SERVICES = [
   // name, URL, text that appears once the real app answers, window [from, to) in IST hours
   { name: 'ContractIQ', url: 'https://contractiq-1odn.onrender.com/health', ready: 'healthy', from: 10, to: 23 },
   { name: 'CodeAtlas', url: 'https://codeatlas-yygz.onrender.com/health', ready: 'healthy', from: 19, to: 23 },
+  // Short evening window: Render's free tier is 750 hours a month for the whole
+  // account, and ContractIQ + CodeAtlas already use about 570 of them.
+  { name: 'StockVision', url: 'https://stockvision-pro-jbve.onrender.com/health', ready: 'healthy', from: 19, to: 23 },
 ];
 
 const WAIT_MS = 4 * 60 * 1000; // a cold start can take a minute or two
