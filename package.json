@@ -2,6 +2,10 @@
   "name": "render-wake",
   "private": true,
   "type": "module",
-  "scripts": { "wake": "node wake.mjs" },
-  "dependencies": { "playwright": "1.48.2" }
+  "scripts": {
+    "wake": "node wake.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.65.1"
+  }
 }
