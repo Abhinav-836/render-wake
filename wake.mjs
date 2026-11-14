@@ -4,7 +4,8 @@
 // "waking up" page (HTTP 503) and only starts the server when that page's
 // script runs in a browser. Plain pings (cron-job.org) get the 503 and the
 // server stays asleep. Once a server is awake, the cron-job.org pings keep it
-// awake for the rest of its window, so this only has to run at the start.
+// awake for the rest of its window. The workflow runs every hour, so if a run is
+// late or the server falls asleep anyway, the next run wakes it again.
 //
 // Each service is woken only inside its keep-awake window (Indian time), so
 // free Render hours aren't spent outside it.
@@ -14,7 +15,6 @@ const SERVICES = [
   // name, URL, text that appears once the real app answers, window [from, to) in IST hours
   { name: 'ContractIQ', url: 'https://contractiq-1odn.onrender.com/health', ready: 'healthy', from: 10, to: 23 },
   { name: 'CodeAtlas', url: 'https://codeatlas-yygz.onrender.com/health', ready: 'healthy', from: 19, to: 23 },
-  { name: 'Strategy Lab', url: 'https://strategy-lab-53yt.onrender.com/', ready: 'Strategy Lab', from: 19, to: 23 },
 ];
 
 const WAIT_MS = 4 * 60 * 1000; // a cold start can take a minute or two
