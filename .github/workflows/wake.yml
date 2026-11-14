@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       only:
-        description: 'Wake just one service ("codeatlas", "contractiq") or "all"; empty = whatever is in its window now'
+        description: 'Wake just one service ("codeatlas", "contractiq", "stockvision") or "all"; empty = whatever is in its window now'
         required: false
         default: ""
 
