@@ -23,6 +23,10 @@ const SERVICES = [
   // Short evening window: Render's free tier is 750 hours a month for the whole
   // account, and ContractIQ + CodeAtlas already use about 570 of them.
   { name: 'StockVision', url: 'https://stockvision-pro-jbve.onrender.com/health', ready: 'healthy', from: 19, to: 23 },
+  // Kavorin Tech company site (runs on a separate Render account with its own
+  // 750 free hours, so it can stay awake all day). Its health check also queries
+  // the Supabase database, which keeps the free database from pausing.
+  { name: 'Kavorin', url: 'https://kavorin-tech.onrender.com/api/v1/health', ready: '"status":"ok"', from: 0, to: 24 },
   // Streamlit apps: opened only at these IST hours (no Render hours used)
   { name: 'MonteCarlo', streamlit: true, url: 'https://ai-monte-carlo-simulator-pro.streamlit.app/', ready: 'AI Monte Carlo Pro', hours: [10, 21] },
   { name: 'StockPrediction', streamlit: true, url: 'https://stocks-price-predictions.streamlit.app/', ready: 'Stock Price Prediction Dashboard', hours: [10, 21] },
